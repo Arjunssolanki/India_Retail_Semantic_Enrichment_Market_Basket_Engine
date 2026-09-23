@@ -62,6 +62,9 @@ An enterprise-grade, event-driven hybrid data engineering infrastructure pipelin
 
 - **Action:** Engineered `02_silver_dl_enrichment.py` to pipe raw item text through a pre-trained Hugging Face **BERT Transformer** configuration model (`bert-base-uncased`).
 - **Outcome:** Evaluated string semantics to extract structured entities (`Extracted_Brand`, `Extracted_Product_Type`, `Extracted_Attributes`) across all 9,994 rows, saving the logs into `india_retail_silver.tbl_semantic_catalog_tokens` while registering deep learning pipeline latency and hyperparameters into the MLflow MLOps dashboard.
+<p align="center">
+  <img src="dashbaord.png" width="900" alt="MLflow Silver Layer MLOps Dashboard">
+</p>
 
 ### Step 9: Crash-Proof Market Basket Mining (Gold Layer Analytical Optimization)
 
