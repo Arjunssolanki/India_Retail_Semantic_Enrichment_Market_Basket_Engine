@@ -1,0 +1,42 @@
+services:
+  mysql_db:
+    image: mysql:8.0
+    container_name: india_retail_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql_production_data:/var/lib/mysql
+    networks:
+      - retail_pipeline_network
+
+  mlflow_server:
+    image: ghcr.io/mlflow/mlflow:v2.11.0
+    container_name: retail_mlflow_registry
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_DISABLE_ENV_MANAGER_LOGGING=true
+    command: >
+      mlflow server 
+      --host 0.0.0.0 
+      --port 5000 
+      --backend-store-uri sqlite:///mlflow.db 
+      --default-artifact-root ./mlruns
+    volumes:
+      - mlflow_registry_data:/mlflow
+    networks:
+      - retail_pipeline_network
+
+volumes:
+  mysql_production_data:
+    driver: local
+  mlflow_registry_data:
+    driver: local
+
+networks:
+  retail_pipeline_network:
+    driver: bridge

@@ -1,0 +1,30 @@
+# Local Environment Configuration Blocks
+.env
+.env.local
+.env.development
+
+# Python Environment Isolation Runtimes
+venv/
+retail_env/
+
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# IDE Configuration & Workspace State Logs
+.vscode/
+.idea/
+.DS_Store
+*.docx
+*.doc
+
+
+# Data Sandbox and Temporary Partitions
+data_samples/
+*.csv
+*.xlsx
+*.parquet
+
+# MLOps Local Dashboard Telemetry Storage
+mlruns/
+mlflow.db
