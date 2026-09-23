@@ -17,8 +17,6 @@ An enterprise-grade, event-driven hybrid data engineering infrastructure pipelin
 ---
 
 ## 🏛️ System Architecture & Data Flow
-
-```text
 ![System Architecture Diagram](architecture.jpeg)
 
 ## 🛠️ Detailed Engineering Step-by-Step Ledger
