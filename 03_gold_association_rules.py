@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 import mlflow
 from mlxtend.frequent_patterns import apriori, association_rules
@@ -60,6 +61,16 @@ def run_gold_analytics_pipeline():
             
             rules["antecedents"] = rules["antecedents"].apply(lambda x: ", ".join(list(x)))
             rules["consequents"] = rules["consequents"].apply(lambda x: ", ".join(list(x)))
+            
+            cleaned_columns = []
+            for col in rules.columns:
+                c = col.replace("'", "")
+                c = re.sub(r"[^a-zA-Z0-9_]", "_", c)
+                cleaned_columns.append(c)
+            rules.columns = cleaned_columns
+            
+            # Swaps out mathematical infinity (inf) cells for clean numeric values compatible with MySQL
+            rules = rules.replace([float('inf'), float('-inf')], 999.99)
             
             print("[INFO] Committing analytical insights rules table to Gold database schema...")
             rules.to_sql(
