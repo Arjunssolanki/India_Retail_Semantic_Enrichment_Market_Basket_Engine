@@ -19,18 +19,7 @@ An enterprise-grade, event-driven hybrid data engineering infrastructure pipelin
 ## 🏛️ System Architecture & Data Flow
 
 ```text
-[AWS S3 Ingestion Bucket] ──(boto3 stream)──► [Local VS Code Runtime (retail_env)]
-                                                    │
-                                                    ▼ (Pandas / SQLAlchemy 2.0)
-[Local Docker Network Ports] ◄──────────────────────┘
-  ├── MySQL 8.0 Database (Port 3307)
-  │     ├── india_retail_bronze ──► tbl_cleaned_retail_transactions (Standardized underscores)
-  │     ├── india_retail_silver ──► tbl_semantic_catalog_tokens      (BERT Feature Tokens)
-  │     └── india_retail_gold   ──► tbl_market_basket_rules         (Sanitized Metric Matrix)
-  └── MLflow Tracking Server (Port 5000) ───────────────────────────► Interactive MLOps Dashboard
-```
-
----
+![System Architecture Diagram](architecture.jpeg)
 
 ## 🛠️ Detailed Engineering Step-by-Step Ledger
 
