@@ -83,3 +83,17 @@ An enterprise-grade, event-driven hybrid data engineering infrastructure pipelin
 
 - **Action:** Engineered a master orchestration framework script named `run_pipeline.py`.
 - **Outcome:** Fully automated the end-to-end Medallion execution loop under single-command control. It implements an advanced boundary safety checker that completely halts execution if a preceding stage crashes, and automatically dumps fresh backup CSV tracking snapshots straight into the local portfolio `assets/` folder upon completion.
+### 📊 Gold Layer: Market Basket Association Rules Matrix
+
+The table below displays a representative structural preview of the 662 association rules mined by the distributed Apriori engine, sorted by their predictive cross-selling strength:
+
+| Antecedents (If Buy This) | Consequents (Then Buy That) | Antecedent Support | Consequent Support | Support | Confidence | Lift | Conviction | Zhangs Metric |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Atta** | **Coffee** | 0.2000 | 0.2000 | **0.2000** | **1.0000** | **5.0000** | 999.99 | 1.0000 |
+| **Juice** | **Atta** | 0.2000 | 0.2000 | **0.2000** | **1.0000** | **5.0000** | 999.99 | 1.0000 |
+| **Dal** | **Atta** | 0.1882 | 0.2000 | **0.1882** | **1.0000** | **5.0000** | 999.99 | 0.9855 |
+| **Atta** | **Dal** | 0.2000 | 0.1882 | **0.1882** | **0.9412** | **5.0000** | 13.8000 | 1.0000 |
+| **Uniform** | **Trousers** | 0.2000 | 0.2000 | **0.2000** | **1.0000** | **5.0000** | 999.99 | 1.0000 |
+
+#### 🔍 Behavioral Insights & Matrix Mechanics
+This matrix represents the final business discovery layer of the pipeline, surfacing hidden consumer purchasing patterns from the Indian retail dataset. By utilizing high-cardinality composite indexing (`Category_City`), the Apriori engine evaluates the co-occurrence of deep learning-extracted product tokens to establish actionable cross-selling rules. For instance, the combination of **Atta** and **Coffee** demonstrates a **Support of 0.2000**, meaning this high-volume pairing appears in 20.00% of all localized categorical transaction blocks. A **Confidence score of 1.0000 (100%)** proves that every single time a consumer placed "Atta" in their basket within these structural boundaries, they co-purchased "Coffee." Furthermore, a **Lift value of 5.0000** reveals that consumers are 5 times more likely to purchase the consequent item explicitly because the antecedent item is present in their cart, rather than by random baseline chance. Infinite conviction metrics (`inf`), which naturally occur during absolute 100% confidence patterns, have been programmatically normalized to a standard upper bound threshold of **999.99** to ensure seamless MySQL relational schema compatibility and long-term pipeline stability. These metrics provide critical, data-driven parameters for optimizing inventory routing, localized supply chains, and targeted e-commerce recommendation algorithms.
